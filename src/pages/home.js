@@ -273,7 +273,7 @@ function Home() {
         <nav>
             <ul>
                 <li className="nameNav">DAILY NOTEXZ</li>
-                <li className="todolistNavHome">To-do List</li>
+                <li className="todolistNavHome" >To-do List</li>
                 <li className="perfilIcon" ><User></User></li>
                 <li className="perfilNavHome" >{perfil} </li>
                 
@@ -299,8 +299,8 @@ function Home() {
                     <p className="containerDescript" key={index}>{row.descricao}</p>
                    
                     <ul>
-                    <li className="containerDate" key={index}>{formatarData(row.data)}</li>
-                    <li className="containerHour" key={index}>{row.hora}</li>
+                    <li className="containerDate" key={index}>{formatarData(row.data)} </li>
+                    <li className="containerHour" key={index}> - {row.hora}</li>
                     <ul>
                         <li className="itembtn"> <button className="botaoright" onClick={() =>toDev(index)}>prox</button></li>
                         <li className="itembtnc">  <button className="botaoleft">voltar</button></li>
@@ -359,8 +359,8 @@ function Home() {
                     <p className="containerDescript" key={index}>{row.descricao}</p>
                    
                     <ul>
-                    <li className="containerDate" key={index}>{formatarData(row.data)}</li>
-                    <li className="containerHour" key={index}>{row.hora}</li>
+                    <li className="containerDate" key={index}>{formatarData(row.data)} </li>
+                    <li className="containerHour" key={index}> - {row.hora}</li>
                     <ul>
                         <li className="itembtn"> <button className="botaoright" onClick={() =>toFin(index)}>prox</button></li>
                         <li className="itembtnc">  <button className="botaoleft" onClick={() =>voltaback(index)}>voltar</button></li>
@@ -392,8 +392,8 @@ function Home() {
                     <p className="containerDescript" key={index}>{row.descricao}</p>
                    
                     <ul>
-                    <li className="containerDate" key={index}>{formatarData(row.data)}</li>
-                    <li className="containerHour" key={index}>{row.hora}</li>
+                    <li className="containerDate" key={index}>{formatarData(row.data)} </li>
+                    <li className="containerHour" key={index}> - {row.hora}</li>
                     <ul>
                         <li className="itembtn"> <button className="botaoright" >prox</button></li>
                         <li className="itembtnc">  <button className="botaoleft" onClick={() =>todevVolta(index)}>voltar</button></li>

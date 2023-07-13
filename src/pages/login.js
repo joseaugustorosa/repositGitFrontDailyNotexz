@@ -1,9 +1,17 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios'
 function Login() {
+
+  useEffect(() => {
+    document.title = 'DAILY NOTEXZ';
+    
+   }, []);
+
+
+
     const navigate = useNavigate();
     const [email, SetEmail] = useState('');
     const [password, Setpassword] = useState('');
