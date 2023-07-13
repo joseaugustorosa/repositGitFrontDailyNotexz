@@ -1,38 +1,234 @@
-.App {
-  text-align: center;
+body{
+  background: linear-gradient(#121212, #212b46);
+  height: 100vh;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.header nav ul li{
   color: white;
+  display: inline-block;
+  padding: 10px;
+  margin-top: 10px;
+}
+.header{
+  background-color: rgba(25, 25, 80, 0.459);
+  height: 60px;
 }
 
-.App-link {
-  color: #61dafb;
+.todolistNavHome{
+  margin-left: 40px;
+}
+.nameNav{
+  margin-left: 50px ;
+  
+}
+.div{
+  width: 33%;
+  text-align: center;
+  margin:50px auto;
+  float: left;
+  color: white;
+  
+}
+.div h1{
+  padding: 10px;
+}
+.containerMain{
+  background-color: #212b46;
+  margin: 10px;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+.msgSemRegistrosDiv{
+  padding: 10px;
+}
+.msgSemRegistros{
+  color: rgb(180, 180, 180);
+}
+.containerItem{
+  background-color: #1d2336;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 5px;
+  text-align: start;
+  clear: both;
+  
+}
+.containerTitle{
+  margin-left: 10px;
+ 
+}
+.containerDate{
+ display: inline-block;
+ margin-right:70% ;
+ margin-left:6px;
+}
+.containerHour{
+  display: inline-block;
+  
+}
+.containerDescript{
+  padding: 3px;
+  margin-left: 5px;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.644);
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.popup-content {
+  background-color: #1d2336;
+  width: 40%;
+  height: 40%;
+  border-radius: 4px;
+  clear: both;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.m{
+  float: left;
+}
+.btnADDHome{
+ text-align: center;
+ padding: 10px 20px;
+ border-radius: 7px;
+ border: none;
+ background-color:#1d2336;
+ color:white ;
+
+}
+.div_btn_fp{
+  display: flex;
+
+  width: 300px;
+justify-content: center;
+margin: 50px auto 0px auto;
+}
+.perfilIcon{
+  float: right;
+  margin-right: 100px;
+
+}
+.perfilNavHome{
+  float: right;
+  
+}
+._popup{
+  padding: 10px;
+}
+.close_button{
+  float: right;
+  margin: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+color: white;
+background-color: red;
+border:none;
+
+}
+.inputareaLogin{
+  height: 50px;
+}
+.divbtnaddtask{
+  display: flex;
+
+ 
+justify-content: center;
+}
+.btnaddtask{
+  padding: 10px;
+  border:none;
+  margin: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(32, 231, 32, 0.616);
+}
+.delete{
+  float: right;
+  color:red;
+  background: transparent;
+  border:none;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.inputsLogin{
+  padding: 10px;
+  width: 80%;
+  margin: auto;
+}
+.inputLogin{
+  width: 100%;
+  height: 40PX;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(0, 0, 0, 0.24) ;
+  font-size: 16px;
+}
+.inputareaLogin{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.inputLogin:focus{
+  outline: none;
+  border-color: #0180db96; 
+  transition: 0.5s;;
+}
+.inputareaLogin:focus{
+  outline: none;
+  border-color: #0180db96; 
+  transition: 0.5s;
+}
+.containerLogin{
+  width: 50%;
+  height: 400px;
+  margin: 100px auto;
+  background-color: white;
+  border-radius: 10px;
+
+
+}
+.titleLogin{
+  text-align: center;
+  padding-top:56px;
+  padding-bottom: 25px;
+}
+.inputsLogin{
+    width: 60%;
+    
+}
+.inputLogins{
+  width: 100%;
+  height: 40PX;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.24) ;
+  font-size: 16px;
+}
+.divBotaoLogin{
+  display: flex;
+  justify-content: center;
+}
+.LoginButton{
+    padding: 10px 30px;
+    border-radius:6px ;
+    border: none;
+    margin-top: 30px;
+    background-color: rgb(34, 184, 34);
+    color: white;
+}
+.LoginButton:hover{
+  background-color: green;
+  cursor: pointer;
 }
