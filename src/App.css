@@ -1,6 +1,7 @@
 body{
   background: linear-gradient(#121212, #212b46);
   height: 100vh;
+  font-family: Arial, sans-serif;
 }
 .header nav ul li{
   color: white;
@@ -58,7 +59,7 @@ body{
 }
 .containerDate{
  display: inline-block;
- margin-right:70% ;
+
  margin-left:6px;
 }
 .containerHour{
@@ -69,25 +70,26 @@ body{
   padding: 3px;
   margin-left: 5px;
 }
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.644);
-  display: flex;
-  justify-content: center;
-  padding-top: 100px;
-}
-
 .popup-content {
   background-color: #1d2336;
   width: 40%;
   height: 40%;
   border-radius: 4px;
-  clear: both;
+  position: fixed;
+ 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+ 
+}
+.popup {
+  position: fixed;
+  
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.644);
+  
+  justify-content: center;
+  padding-top: 100px;
+  z-index: 9999;
 }
 .m{
   float: left;
@@ -231,4 +233,81 @@ justify-content: center;
 .LoginButton:hover{
   background-color: green;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  
+  .containerLogin{
+    width: 90%;
+    height: 400px;
+  }
+  .inputsLogin{
+    width: 90%;
+    margin: 10px;
+  }
+  .inputLogin{
+    height: 50px;
+  }
+  .divBotaoLogin{
+    margin-top:  -10px;
+    
+  }
+  .LoginButton{
+    padding: 15px 45px;
+  }
+  .header nav ul li{
+    color: white;
+    display: inline-block;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  .header{
+    background-color: rgba(25, 25, 80, 0.459);
+    height: 100px;
+  }
+  .todolistNavHome{
+    display: none;
+  }
+  .div{
+    display: flex;
+  
+    position: relative;
+    width: 100%;
+    margin: 1px;
+    
+   
+  }
+  .containerMain{
+    
+    width: 100%;
+  }
+  .popup-content {
+    background-color: #1d2336;
+    width: 90%;
+    height: 40%;
+    border-radius: 4px;
+    position: fixed;
+   
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+   
+  }
+  .popup {
+    position: fixed;
+    
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.644);
+    
+    justify-content: center;
+    padding-top: 100px;
+    z-index: 9999;
+  }
+  .btnaddtask{
+    padding: 10px 45px;
+    border:none;
+    margin: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: rgba(32, 231, 32, 0.616);
+  }
 }
