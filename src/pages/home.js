@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import '../home.css'
 import Axios from 'axios'
 import { toast } from 'react-toastify';
-import { User  } from 'feather-icons-react';
-
+import  HeaderComponent  from '../components/header.js'
 import 'react-toastify/dist/ReactToastify.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash  } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function Home() {
     const navigate = useNavigate();
     const [perfil, Setperfil] = useState('PERFIL');
@@ -25,20 +26,20 @@ function Home() {
       const handlePopupClose = () => {
         setShowPopup(false);
       };
-    useEffect(() => {
+      useEffect(() => {
     
-       var info = localStorage.getItem('informacao');
-       var login = localStorage.getItem('credencialLogin');
-       if(login != 'Tá Logado'){
-        navigate('/login');
-       }
-        Setperfil(info)
-        rederizarLista()
-        rederizarListaFinished()
-        rederizarListaDesenvolvimento()
-        console.log(rows.length)
-        document.title = 'DAILY NOTEXZ';
-    }, []);
+        var info = localStorage.getItem('informacao');
+        var login = localStorage.getItem('credencialLogin');
+        if(login != 'Tá Logado'){
+         navigate('/login');
+        }
+         Setperfil(info)
+         rederizarLista()
+         rederizarListaFinished()
+         rederizarListaDesenvolvimento()
+         console.log(rows.length)
+         document.title = 'DAILY NOTEXZ';
+     }, []);
     function toDev(index){
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
@@ -269,21 +270,11 @@ function Home() {
     
   return (
     <div className="backHome">
-        <div className="header">
-        <nav>
-            <ul>
-                <li className="nameNav">DAILY NOTEXZ</li>
-                <li className="todolistNavHome" >To-do List</li>
-                <li className="perfilIcon" ><User></User></li>
-                <li className="perfilNavHome" >{perfil} </li>
-                
-            </ul>
-
-        </nav>
-        </div >    
+       <HeaderComponent/>
         <div className="div_btn_fp">
         <button onClick={handleButtonClick} className="btnADDHome">Adicionar Tarefa</button>
         </div>
+      
         <div className="div">
             <div className="containerMain">
                 <h1>Backlog</h1>
@@ -294,16 +285,18 @@ function Home() {
                 {rows.map((row, index) => (
                 <div className="containerItem" >
                     <h3 className="containerTitle" key={index}>{row.titulo}</h3>
-                    <button className="delete" onClick={() => Delete(index)}> Del</button>
+                    <button className="delete" onClick={() => Delete(index)}>  <FontAwesomeIcon icon={faTrash } /></button>
                     
                     <p className="containerDescript" key={index}>{row.descricao}</p>
                    
                     <ul>
                     <li className="containerDate" key={index}>{formatarData(row.data)} </li>
                     <li className="containerHour" key={index}> - {row.hora}</li>
-                    <ul>
-                        <li className="itembtn"> <button className="botaoright" onClick={() =>toDev(index)}>prox</button></li>
-                        <li className="itembtnc">  <button className="botaoleft">voltar</button></li>
+                    <ul className="btnsCard">
+                       
+                        <li className="itembtnc">  <button className="botaoleft"><FontAwesomeIcon icon={faArrowLeft }/>  </button></li>
+                        <li className="itembtn"> <button className="botaoright" onClick={() =>toDev(index)}> <FontAwesomeIcon icon={faArrowRight } /></button></li>
+                       
                     </ul>
                    
                    
@@ -355,15 +348,16 @@ function Home() {
                 {rows1.map((row, index) => (
                 <div className="containerItem" >
                     <h3 className="containerTitle" key={index}>{row.titulo}</h3>
-                    <button className="delete" onClick={() => Delete1(index)}> Del</button>
+                    <button className="delete" onClick={() => Delete1(index)}> <FontAwesomeIcon icon={faTrash } /></button>
                     <p className="containerDescript" key={index}>{row.descricao}</p>
                    
                     <ul>
                     <li className="containerDate" key={index}>{formatarData(row.data)} </li>
                     <li className="containerHour" key={index}> - {row.hora}</li>
                     <ul>
-                        <li className="itembtn"> <button className="botaoright" onClick={() =>toFin(index)}>prox</button></li>
-                        <li className="itembtnc">  <button className="botaoleft" onClick={() =>voltaback(index)}>voltar</button></li>
+                        <li className="itembtnc">  <button className="botaoleft" onClick={() =>voltaback(index)}><FontAwesomeIcon icon={faArrowLeft }/></button></li>
+                        <li className="itembtn"> <button className="botaoright" onClick={() =>toFin(index)}><FontAwesomeIcon icon={faArrowRight }/></button></li>
+                        
                     </ul>
                     </ul>
                     
@@ -388,15 +382,16 @@ function Home() {
                 {rows2.map((row, index) => (
                 <div className="containerItem" >
                     <h3 className="containerTitle" key={index}>{row.titulo}</h3>
-                    <button className="delete" onClick={() => Delete2(index)}> Del</button>
+                    <button className="delete" onClick={() => Delete2(index)}> <FontAwesomeIcon icon={faTrash } /></button>
                     <p className="containerDescript" key={index}>{row.descricao}</p>
                    
                     <ul>
                     <li className="containerDate" key={index}>{formatarData(row.data)} </li>
                     <li className="containerHour" key={index}> - {row.hora}</li>
                     <ul>
-                        <li className="itembtn"> <button className="botaoright" >prox</button></li>
-                        <li className="itembtnc">  <button className="botaoleft" onClick={() =>todevVolta(index)}>voltar</button></li>
+                        <li className="itembtnc">  <button className="botaoleft" onClick={() =>todevVolta(index)}><FontAwesomeIcon icon={faArrowLeft }/></button></li>
+                        <li className="itembtn"> <button className="botaoright" ><FontAwesomeIcon icon={faArrowRight }/></button></li>
+                        
                     </ul>
                     </ul>
                     
