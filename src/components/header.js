@@ -50,7 +50,7 @@ const HeaderComponent = () =>  {
         in={menuAberto}
         timeout={300}
         classNames="animacao"
-        unmountOnExit>
+        unmountOnExit> 
 
             <ul className="lista">
                 <li className="itens" onClick={gotoHome}>To-do List</li>

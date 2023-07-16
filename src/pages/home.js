@@ -10,7 +10,7 @@ import { faTrash  } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function Home() {
     const navigate = useNavigate();
-    const [perfil, Setperfil] = useState('PERFIL');
+   
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
     const [rows2, setRows2] = useState([]);
@@ -28,12 +28,17 @@ function Home() {
       };
       useEffect(() => {
     
-        var info = localStorage.getItem('informacao');
+        const token = localStorage.getItem('token');
+        if (token) {
+          } else {
+            navigate('/')
+        }
+
         var login = localStorage.getItem('credencialLogin');
         if(login != 'Tá Logado'){
          navigate('/login');
         }
-         Setperfil(info)
+         
          rederizarLista()
          rederizarListaFinished()
          rederizarListaDesenvolvimento()

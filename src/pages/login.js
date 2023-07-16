@@ -33,9 +33,10 @@ function Login() {
           const informacao = response.data.nome;
           const user = response.data.user;
           const login = 'Tá Logado'
+          const token = "kajsdkhadgyfgdatwutygwoad"
           localStorage.setItem('informacao', informacao);
           localStorage.setItem('user', user);
-          localStorage.setItem('credencialLogin', login);
+          localStorage.setItem('token', token);
           
           console.log(response.data)
           toast.success('Login Autorizado, boa !!', {
