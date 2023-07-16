@@ -12,14 +12,30 @@ body{
     display: inline-block;
     padding: 10px;
     margin-top: 10px;
+  
 }
 .header{
     background-color: rgba(25, 25, 80, 0.459);
     height: 60px;
+    
 }
 
 .todolistNavHome{
     margin-left: 40px;
+    
+}
+.todolistNavHome:hover{ 
+    background-color: #2f3958;
+    border-radius: 10px;
+   
+}
+.healthNavHome{
+   margin-left: 10px;
+   
+}
+.healthNavHome:hover{
+    background-color: #2f3958;
+    border-radius: 10px;
 }
 .nameNav{
     margin-left: 50px ;
@@ -59,7 +75,9 @@ body{
     
 }
 .containerTitle{
+    margin-top: 5px;
     margin-left: 10px;
+    width: 80%;
    
 }
 .containerDate{
@@ -75,6 +93,7 @@ body{
 .containerDescript{
     padding: 3px;
     margin-left: 5px;
+    width: 80%;
     
 }
 .popup {
@@ -165,14 +184,16 @@ border:none;
     float: right;
     background: transparent;
     border: none;
+   
     padding-right:10px;
     
 }
 .itembtn{
-    display: inline-block;
-    position: relative;
-   right: -88%;
-   padding-top: 5px;
+    
+   float: right;
+    text-align: right;
+    list-style: none;
+    
 
 }
 .botaoright{
@@ -198,6 +219,8 @@ border:none;
 }
 .itembtnc{
     display: inline-block;
-    position: relative;
-    left: -6%;
+    
+}
+.btnsCard{
+    margin: 5px;
 }
