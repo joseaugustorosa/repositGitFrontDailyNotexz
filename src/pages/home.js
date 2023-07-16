@@ -10,7 +10,7 @@ import { faTrash  } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function Home() {
     const navigate = useNavigate();
-    const [perfil, Setperfil] = useState('PERFIL');
+   
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
     const [rows2, setRows2] = useState([]);
@@ -28,12 +28,15 @@ function Home() {
       };
       useEffect(() => {
     
-        var info = localStorage.getItem('informacao');
-        var login = localStorage.getItem('credencialLogin');
-        if(login != 'Tá Logado'){
-         navigate('/login');
+        const token = localStorage.getItem('token');
+        console.log(token)
+        if (token) {
+          } else {
+            navigate('/')
         }
-         Setperfil(info)
+
+       
+         
          rederizarLista()
          rederizarListaFinished()
          rederizarListaDesenvolvimento()
@@ -59,6 +62,18 @@ function Home() {
             rederizarListaFinished()
             rederizarListaDesenvolvimento()
         });
+    }
+    function gerarId(){
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const hours = String(currentDate.getHours()).padStart(2, '0');
+        const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+        const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+
+        const id = `${year}${month}${day}${hours}${minutes}${seconds}`;
+        return id
     }
     function voltaback(index){
         var usuario = localStorage.getItem('user');
@@ -175,7 +190,8 @@ function Home() {
             descricao : descricao,
             data:new Date(),
             hora: hora(),
-            user: nomeuser
+            user: nomeuser,
+            id: gerarId()
 
         }).then((response)=>{  
              console.log()
@@ -196,10 +212,9 @@ function Home() {
         console.log(usuario)
 
         Axios.post("https://backenddailynotes.onrender.com/ExcluirBacklog",{
-            titulo: rows[index].titulo,
-            data:rows[index].data,
-            hora: rows[index].hora,
+            id: rows[index].id,
             user: usuario
+
 
         }).then((response)=>{  
              console.log()
@@ -217,11 +232,8 @@ function Home() {
         console.log(usuario)
 
         Axios.post("https://backenddailynotes.onrender.com/ExcluirBacklog",{
-            titulo: rows1[index].titulo,
-            data:rows1[index].data,
-            hora: rows1[index].hora,
+            id: rows1[index].id,
             user: usuario
-
         }).then((response)=>{  
              console.log()
              const rowsData = response.data.rows;
@@ -239,9 +251,7 @@ function Home() {
         console.log(usuario)
 
         Axios.post("https://backenddailynotes.onrender.com/ExcluirBacklog",{
-            titulo: rows2[index].titulo,
-            data:rows2[index].data,
-            hora: rows2[index].hora,
+            id: rows2[index].id,
             user: usuario
 
         }).then((response)=>{  

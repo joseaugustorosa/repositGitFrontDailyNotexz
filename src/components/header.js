@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 const HeaderComponent = () =>  {
     const navigate = useNavigate();
     const [perfil, Setperfil] = useState('PERFIL');
@@ -27,7 +28,12 @@ const HeaderComponent = () =>  {
         setMenuAberto(!menuAberto);
     };
     
-      
+    const logout = () =>{
+       
+        localStorage.removeItem('token');
+        navigate('/')
+
+    }
 
 
   return (
@@ -50,13 +56,14 @@ const HeaderComponent = () =>  {
         in={menuAberto}
         timeout={300}
         classNames="animacao"
-        unmountOnExit>
+        unmountOnExit> 
 
             <ul className="lista">
                 <li className="itens" onClick={gotoHome}>To-do List</li>
                 <li  className="itens" onClick={gotoHealth}>Health</li>
                 
                 <li className="itens" >{perfil} - perfil <User></User></li>
+                <li className="itens" onClick={logout}><FontAwesomeIcon icon={faSignOutAlt } className="m" /></li>
                 
             </ul> 
 
@@ -69,8 +76,11 @@ const HeaderComponent = () =>  {
             <li className="nameNav">DAILY NOTEXZ</li>
             <li className="todolistNavHome" onClick={gotoHome}>To-do List</li>
             <li className="healthNavHome"  onClick={gotoHealth}>Health</li>
+            <li className="logoutBTN"  onClick={logout}><FontAwesomeIcon icon={faSignOutAlt } className="m" /> </li>        
             <li className="perfilIcon" ><User></User></li>
-            <li className="perfilNavHome" >{perfil} </li>           
+            <li className="perfilNavHome"  >{perfil} </li>  
+                   
+             
         </ul>
         </nav>
         )}

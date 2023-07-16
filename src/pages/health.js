@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/header'
 import '../style/health.css'
 import { CSSTransition } from 'react-transition-group';
@@ -7,6 +8,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import { toast } from 'react-toastify';
 
 const Health = () =>  {
+    const navigate = useNavigate()
     const [opcaoSelecionada, setOpcaoSelecionada] = useState('')
     const [exibirDiv, setExibirDiv] = useState(false);
     const handleOpcaoChange = (event) => {
@@ -22,6 +24,15 @@ const Health = () =>  {
         console.log('Opção selecionada:', opcaoSelecionada);
       };
     useEffect(() => {
+
+        const token = localStorage.getItem('token');
+
+        if (token) {
+        // O usuário está autenticado, pode acessar as funcionalidades restritas
+        } else {
+            navigate('/')
+        
+        }
         document.title = 'DAILY NOTEXZ';
         toast.info('Página em construção')
      }, []);
