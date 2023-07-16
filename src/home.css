@@ -134,9 +134,21 @@ body{
 }
 .perfilIcon{
     float: right;
-    margin-right: 100px;
+   margin-right: 30px;
 
 }
+.logoutBTN{
+    margin-right: 30px;
+    
+}
+.logoutBTN:hover{
+    background-color: #2f3958;
+    border-radius: 10px;
+}
+.m{
+    color: rgb(253, 103, 103);
+}
+
 .perfilNavHome{
     float: right;
     
