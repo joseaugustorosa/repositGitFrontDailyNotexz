@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, {useState, useEffect ,useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../home.css'
 import Axios from 'axios'
@@ -9,56 +9,83 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash  } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function Home() {
+    const [isDragging, setIsDragging] = useState(false);
+    const cardRef = useRef(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [offset, setOffset] = useState({ x: 0, y: 0 });
+  
+    const handleMouseDown = (e) => {
+      setIsDragging(true);
+      const cardRect = cardRef.current.getBoundingClientRect();
+      setOffset({
+        x: e.clientX - cardRect.left,
+        y: e.clientY - cardRect.top,
+      });
+    };
+  
+    const handleMouseMove = (e) => {
+      if (isDragging) {
+        setPosition({
+          x: e.clientX - offset.x,
+          y: e.clientY - offset.y,
+        });
+      }
+    };
+  
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+  
+    const estiloDaTag = {
+       
+      };
+    
+
+
     const navigate = useNavigate();
-   
+    const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotes.onrender.com'
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
     const [rows2, setRows2] = useState([]);
     const [rows1, setRows1] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
-    var resultado1;
     const [titulo, Settitulo] = useState('');
     const [descricao, setdescricao] = useState('');
     const handleButtonClick = () => {
         setShowPopup(true);
-      };
-    
+    };
       const handlePopupClose = () => {
         setShowPopup(false);
-      };
+    };
       useEffect(() => {
-    
         const token = localStorage.getItem('token');
         console.log(token)
         if (token) {
-          } else {
+        } else {
             navigate('/')
-        }
-
-       
-         
+        }             
          rederizarLista()
          rederizarListaFinished()
          rederizarListaDesenvolvimento()
          console.log(rows.length)
-         document.title = 'DAILY NOTEXZ';
+         document.title = 'HOME - DAILY NOTEXZ';
      }, []);
     function toDev(index){
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
-
-        Axios.post("https://backenddailynotes.onrender.com/mudarStatusDev",{
+        console.log(rows[index].id)
+        Axios.post(urlBackend +"/mudarStatusDev",{
             titulo: rows[index].titulo,
             data:rows[index].data,
             hora: rows[index].hora,
-
+            id: rows[index].id,
             user: usuario
-
         }).then((response)=>{  
-           
-             const rowsData = response.data.rows;
-             setRows(rowsData);
-             rederizarLista()
+            console.log(response)
+            const rowsData = response.data.rows;
+            setRows(rowsData);
+            //setRows1([...rows1, rows[index]]);
+            rederizarLista()
             rederizarListaFinished()
             rederizarListaDesenvolvimento()
         });
@@ -79,11 +106,11 @@ function Home() {
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
-        Axios.post("https://backenddailynotes.onrender.com/devparaback",{
+        Axios.post(urlBackend + "/devparaback",{
             titulo: rows1[index].titulo,
             data:rows1[index].data,
             hora: rows1[index].hora,
-
+            id: rows1[index].id,
             user: usuario
 
         }).then((response)=>{  
@@ -99,11 +126,11 @@ function Home() {
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
-        Axios.post("https://backenddailynotes.onrender.com/mudarStatusFin",{
+        Axios.post(urlBackend + "/mudarStatusFin",{
             titulo: rows1[index].titulo,
             data:rows1[index].data,
             hora: rows1[index].hora,
-
+            id: rows1[index].id,
             user: usuario
 
         }).then((response)=>{  
@@ -119,11 +146,11 @@ function Home() {
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
-        Axios.post("https://backenddailynotes.onrender.com/finparadev",{
+        Axios.post(urlBackend + "/finparadev",{
             titulo: rows2[index].titulo,
             data:rows2[index].data,
             hora: rows2[index].hora,
-
+            id: rows2[index].id,
             user: usuario
 
         }).then((response)=>{  
@@ -139,7 +166,7 @@ function Home() {
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
-        Axios.post("https://backenddailynotes.onrender.com/popularTabelaBacklog",{
+        Axios.post(urlBackend + "/popularTabelaBacklog",{
             nomeuser: usuario
         }).then((response)=>{  
            
@@ -152,7 +179,7 @@ function Home() {
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
-        Axios.post("https://backenddailynotes.onrender.com/popularTabelaFinished",{
+        Axios.post(urlBackend + "/popularTabelaFinished",{
             nomeuser: usuario
         }).then((response)=>{  
            
@@ -164,7 +191,7 @@ function Home() {
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
-        Axios.post("https://backenddailynotes.onrender.com/popularTabelaDesenvo",{
+        Axios.post(urlBackend + "/popularTabelaDesenvo",{
             nomeuser: usuario
         }).then((response)=>{  
            
@@ -185,7 +212,7 @@ function Home() {
 
     function insertTarefa(){
 
-        Axios.post("https://backenddailynotes.onrender.com/inserirNaTabelaBacklog",{
+        Axios.post(urlBackend + "/inserirNaTabelaBacklog",{
             titul: titulo,
             descricao : descricao,
             data:new Date(),
@@ -211,7 +238,7 @@ function Home() {
         var usuario = localStorage.getItem('user');
         console.log(usuario)
 
-        Axios.post("https://backenddailynotes.onrender.com/ExcluirBacklog",{
+        Axios.post(urlBackend + "/ExcluirBacklog",{
             id: rows[index].id,
             user: usuario
 
@@ -231,7 +258,7 @@ function Home() {
         var usuario = localStorage.getItem('user');
         console.log(usuario)
 
-        Axios.post("https://backenddailynotes.onrender.com/ExcluirBacklog",{
+        Axios.post(urlBackend + "/ExcluirBacklog",{
             id: rows1[index].id,
             user: usuario
         }).then((response)=>{  
@@ -250,7 +277,7 @@ function Home() {
         var usuario = localStorage.getItem('user');
         console.log(usuario)
 
-        Axios.post("https://backenddailynotes.onrender.com/ExcluirBacklog",{
+        Axios.post(urlBackend + "/ExcluirBacklog",{
             id: rows2[index].id,
             user: usuario
 
@@ -389,11 +416,13 @@ function Home() {
                 <h1>Finished</h1>
                 {rows2.length > 0 &&(
                 <div>
+
+
                 {rows2.map((row, index) => (
                 <div className="containerItem" >
-                    <h3 className="containerTitle" key={index}>{row.titulo}</h3>
+                    <h3 className="containerTitle" key={index} style={estiloDaTag} >{row.titulo}</h3>
                     <button className="delete" onClick={() => Delete2(index)}> <FontAwesomeIcon icon={faTrash } /></button>
-                    <p className="containerDescript" key={index}>{row.descricao}</p>
+                    <p className="containerDescript" key={index} style={estiloDaTag}>{row.descricao}</p>
                    
                     <ul>
                     <li className="containerDate" key={index}>{formatarData(row.data)} </li>

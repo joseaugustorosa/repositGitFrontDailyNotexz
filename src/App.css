@@ -100,13 +100,17 @@ body{
 }
 .btnADDHome{
  text-align: center;
- padding: 10px 20px;
+ padding: 12px 40px;
  border-radius: 7px;
  border: none;
- background-color:#1d2336;
+ background-color:#2f3857;
  color:white ;
 
 
+}
+.btnADDHome:hover{
+  background-color:#262d46;
+  cursor: pointer;
 }
 .div_btn_fp{
   display: flex;
@@ -138,7 +142,7 @@ border:none;
 
 }
 .inputareaLogin{
-  height: 50px;
+  height: 100px;
 }
 .divbtnaddtask{
   display: flex;
@@ -154,6 +158,16 @@ border:none;
   color: white;
   background-color: rgba(32, 231, 32, 0.616);
 }
+.btnaddtask:hover{
+  padding: 10px;
+  border:none;
+  margin: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(31, 138, 31, 0.616);
+  cursor: pointer;
+}
+
 .delete{
   float: right;
   color:red;
@@ -372,4 +386,12 @@ border:none;
 }
 .logoutBTN{
   float: right;
+}
+.card {
+  width: 200px;
+  height: 150px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: grab;
+  position: absolute;
 }
