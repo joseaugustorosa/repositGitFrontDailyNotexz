@@ -9,39 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash  } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function Home() {
-    const [isDragging, setIsDragging] = useState(false);
-    const cardRef = useRef(null);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [offset, setOffset] = useState({ x: 0, y: 0 });
-  
-    const handleMouseDown = (e) => {
-      setIsDragging(true);
-      const cardRect = cardRef.current.getBoundingClientRect();
-      setOffset({
-        x: e.clientX - cardRect.left,
-        y: e.clientY - cardRect.top,
-      });
-    };
-  
-    const handleMouseMove = (e) => {
-      if (isDragging) {
-        setPosition({
-          x: e.clientX - offset.x,
-          y: e.clientY - offset.y,
-        });
-      }
-    };
-  
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-  
-    const estiloDaTag = {
-       
-      };
-    
-
-
     const navigate = useNavigate();
     const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotes.onrender.com'
     const [nomeuser, Setnomeuser] = useState('PERFIL');
@@ -307,11 +274,11 @@ function Home() {
     
   return (
     <div className="backHome">
-       <HeaderComponent/>
+        <HeaderComponent/>
         <div className="div_btn_fp">
         <button onClick={handleButtonClick} className="btnADDHome">Adicionar Tarefa</button>
         </div>
-      
+      <div className="Organizacao">
         <div className="div">
             <div className="containerMain">
                 <h1>Backlog</h1>
@@ -420,9 +387,9 @@ function Home() {
 
                 {rows2.map((row, index) => (
                 <div className="containerItem" >
-                    <h3 className="containerTitle" key={index} style={estiloDaTag} >{row.titulo}</h3>
+                    <h3 className="containerTitle" key={index}>{row.titulo}</h3>
                     <button className="delete" onClick={() => Delete2(index)}> <FontAwesomeIcon icon={faTrash } /></button>
-                    <p className="containerDescript" key={index} style={estiloDaTag}>{row.descricao}</p>
+                    <p className="containerDescript" key={index}>{row.descricao}</p>
                    
                     <ul>
                     <li className="containerDate" key={index}>{formatarData(row.data)} </li>
@@ -447,6 +414,7 @@ function Home() {
                 ) }
         </div>
                 
+            </div>
             </div>
         </div>
       

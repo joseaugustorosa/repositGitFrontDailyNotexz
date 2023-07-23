@@ -84,3 +84,12 @@
 .itenscheck input{
     margin-right:5px;
 }
+.testes{
+    margin-top: 10px;
+    height: 30px;
+    border-radius: 6px;
+    border:none;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}

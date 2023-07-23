@@ -1,0 +1,37 @@
+.sidebar {
+  width: 150px;
+  height: 100%;
+  background-color: #16133877;
+  padding: 20px;
+  position: fixed;
+ 
+  margin-top:8px;
+
+}
+.itemHeader{
+   
+    width: 90%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.281);
+}
+
+
+.item { 
+    height: 10px;
+    width: 100%;
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+
+}
+.itemCriar{
+    position: fixed;
+    bottom: 10px;
+    height: 20px;
+    width: 100%;
+}
+
+.itemCriar:hover{
+    color: gray;
+    cursor:pointer ;
+
+}
