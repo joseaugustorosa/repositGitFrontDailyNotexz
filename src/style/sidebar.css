@@ -6,6 +6,7 @@
   position: fixed;
  
   margin-top:8px;
+  border-right: 1px solid rgba(255, 255, 255, 0.171);
 
 }
 .itemHeader{
@@ -34,4 +35,21 @@
     color: gray;
     cursor:pointer ;
 
+}
+.DivCriarQuadro{
+    position: fixed;
+    bottom: 10px;
+    height: 20px;
+    width: 100%;
+    padding: 20px;
+}
+.btnCriarQuadro{
+    padding: 10px 10px;
+    border-radius: 8px;
+    border: none;
+    
+}
+.btnCriarQuadro:hover{
+    cursor: pointer;
+    background-color: gray;
 }

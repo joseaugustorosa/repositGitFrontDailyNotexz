@@ -8,6 +8,7 @@ function Login() {
   const navigate = useNavigate();
   const [email, SetEmail] = useState('');
   const [password, Setpassword] = useState('');
+ 
   useEffect(() => {
     document.title = 'LOGIN - DAILY NOTEXZ';
   }, []);
