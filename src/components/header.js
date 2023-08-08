@@ -36,7 +36,7 @@ const HeaderComponent = () =>  {
 
 
   return (
-    <div className="header">
+    <div className="h-24 bg-darkmode_bg border-b-2	border-white	">
          
       {isMobile ? (
         <div>
@@ -68,11 +68,11 @@ const HeaderComponent = () =>  {
     ) : (
         <nav>
         <ul>
-            <li className="nameNav">DAILY NOTEXZ</li>
+            <li className="inline-block	 ">DAILY NOTEXZ</li>
             
-            <li className="logoutBTN"  onClick={logout}><FontAwesomeIcon icon={faSignOutAlt } className="m" /> </li>        
-            <li className="perfilIcon" ><User></User></li>
-            <li className="perfilNavHome"  >{perfil} </li>  
+            <li className="inline-block		"  onClick={logout}><FontAwesomeIcon icon={faSignOutAlt } className="m" /> </li>        
+            <li className="inline-block	" ><User></User></li>
+            <li className="inline-block	"  >{perfil} </li>  
             
         
        

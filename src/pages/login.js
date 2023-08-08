@@ -51,17 +51,17 @@ function Login() {
     });
   }
   return (
-    <div className='BackLogin'>
-        <div className="containerLogin">
-                <h1 className="titleLogin">DAILY NOTEXZ</h1>
-                <div className="inputsLogin">
-                    <input type="text" className="inputLogin" placeholder="Usuário" value={email} onChange={(e)=> SetEmail(e.target.value)}/>
+    <div className='min-h-screen min-w-full bg-darkmode_bg py-32'>
+        <div className="w-1/2 h-auto bg-white mx-auto my-auto py-5 rounded-lg text-center">
+                <h1 className="text-black-500 text-4xl">DAILY NOTEXZ</h1>
+                <div className="w-11/12 mx-auto py-3 mt-4">
+                    <input type="text" className="w-full h-10 border border-gray_input	rounded-lg  box-border p-4 focus:border-blue_input_focus focus:outline-none " placeholder="Usuário" value={email} onChange={(e)=> SetEmail(e.target.value)}/>
                 </div>
-                <div className="inputsLogin">
-                    <input type="password" className="inputLogin" placeholder="Senha" value={password} onChange={(e)=> Setpassword(e.target.value)}/>
+                <div className="w-11/12 mx-auto py-2">
+                    <input type="password" className="w-full h-10  border border-gray_input	rounded-lg  box-border p-4 focus:border-blue_input_focus focus:outline-none" placeholder="Senha" value={password} onChange={(e)=> Setpassword(e.target.value)}/>
                 </div>
-                <div className="divBotaoLogin">
-                <button className="LoginButton" onClick={login}>Entrar</button>
+                <div className="">
+                <button className="bg-green text-white rounded-lg py-2 px-4 mt-4" onClick={login}>Entrar</button>
                 </div>   
         </div>
 </div>
