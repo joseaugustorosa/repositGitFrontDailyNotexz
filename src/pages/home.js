@@ -1,6 +1,8 @@
 import React, {useState, useEffect ,useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../home.css'
+
+import Sidebar  from "../components/sidebar";
 import Axios from 'axios'
 import { toast } from 'react-toastify';
 import  HeaderComponent  from '../components/header.js'
@@ -10,7 +12,7 @@ import { faTrash  } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function Home() {
     const navigate = useNavigate();
-    const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotes.onrender.com'
+    const urlBackend = 'http://localhost:3001'//'https://backenddailynotes.onrender.com'
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
     const [rows2, setRows2] = useState([]);
@@ -18,6 +20,7 @@ function Home() {
     const [showPopup, setShowPopup] = useState(false);
     const [titulo, Settitulo] = useState('');
     const [descricao, setdescricao] = useState('');
+    
     const handleButtonClick = () => {
         setShowPopup(true);
     };
@@ -37,6 +40,15 @@ function Home() {
          console.log(rows.length)
          document.title = 'HOME - DAILY NOTEXZ';
      }, []);
+
+    const reload = () =>{
+        var quadro = localStorage.getItem('quadro');
+        
+        rederizarLista()
+        rederizarListaFinished()
+        rederizarListaDesenvolvimento()
+        
+    } 
     function toDev(index){
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
@@ -130,11 +142,13 @@ function Home() {
         });
     }
     function rederizarLista(){
+        var quadro = localStorage.getItem('quadro')
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
         Axios.post(urlBackend + "/popularTabelaBacklog",{
-            nomeuser: usuario
+            nomeuser: usuario,
+            quadro: quadro
         }).then((response)=>{  
            
              const rowsData = response.data.rows;
@@ -143,11 +157,13 @@ function Home() {
         });
     }
     function rederizarListaFinished(){
+        var quadro = localStorage.getItem('quadro')
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
         Axios.post(urlBackend + "/popularTabelaFinished",{
-            nomeuser: usuario
+            nomeuser: usuario,
+            quadro: quadro
         }).then((response)=>{  
            
              const rowsData = response.data.rows;
@@ -155,11 +171,13 @@ function Home() {
         });
     }
     function rederizarListaDesenvolvimento(){
+        var quadro = localStorage.getItem('quadro')
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
         Axios.post(urlBackend + "/popularTabelaDesenvo",{
-            nomeuser: usuario
+            nomeuser: usuario,
+            quadro:quadro
         }).then((response)=>{  
            
              const rowsData = response.data.rows;
@@ -178,14 +196,15 @@ function Home() {
     }
 
     function insertTarefa(){
-
+        var quadro = localStorage.getItem('quadro')
         Axios.post(urlBackend + "/inserirNaTabelaBacklog",{
             titul: titulo,
             descricao : descricao,
             data:new Date(),
             hora: hora(),
             user: nomeuser,
-            id: gerarId()
+            id: gerarId(),
+            quadro:quadro
 
         }).then((response)=>{  
              console.log()
@@ -275,6 +294,7 @@ function Home() {
   return (
     <div className="backHome">
         <HeaderComponent/>
+        <Sidebar doIt = {reload}/>
         <div className="div_btn_fp">
         <button onClick={handleButtonClick} className="btnADDHome">Adicionar Tarefa</button>
         </div>
@@ -423,3 +443,4 @@ function Home() {
 }
 
 export default Home;
+

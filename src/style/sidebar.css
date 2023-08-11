@@ -5,14 +5,18 @@
   padding: 20px;
   position: fixed;
  
-  margin-top:8px;
+ 
   border-right: 1px solid rgba(255, 255, 255, 0.171);
-
+  
 }
 .itemHeader{
    
     width: 90%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.281);
+    color: white;
+    padding: 10px;
+
+
 }
 
 
@@ -52,4 +56,19 @@
 .btnCriarQuadro:hover{
     cursor: pointer;
     background-color: gray;
+}
+.teste li{
+    width: 80%;
+    list-style: none;
+  }
+.teste li:hover{
+    background-color:#2f3958 ;
+    border-radius: 10px;
+    
+}
+.teste li{
+    display: inline-block  ;
+    color: white;
+    padding: 5px;
+    margin: 3px 0px;
 }

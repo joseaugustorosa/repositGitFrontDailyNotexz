@@ -3,15 +3,21 @@ import '../App.css'; // Crie um arquivo CSS para estilizar a sidebar, se necessÃ
 import '../style/sidebar.css'
 import { toast } from 'react-toastify';
 import Axios from 'axios'
-const Sidebar = () => {
-    const [isButtonClicked, setIsButtonClicked] = useState(false);
+import Home from '../pages/home'
+const Sidebar = props => {
+    
     const [showInput, setShowInput] = useState(false); 
     const urlBackend = 'http://localhost:3001'//'https://backenddailynotes.onrender.com'
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
-   
+    const [nomeQuadro, SetnomeQuadro] = useState('');
 
     useEffect(() => {
+      UpdateQuadros()
+    
+    }, []);
+
+      const UpdateQuadros = ()=>{
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
         Axios.post(urlBackend + "/buscarQuadros",{
@@ -21,13 +27,32 @@ const Sidebar = () => {
              setRows(rowsData);
              
         });
-    
-    }, []);
+      }
+      const createTable = () =>{
+
+        var usuario = localStorage.getItem('user');
+        console.log("passa")
+        Axios.post(urlBackend + "/criarQuadro",{
+          nomeuser: usuario,
+          nameQuadro : nomeQuadro
 
 
-    const handleButtonClick = () => {
-        setIsButtonClicked(!isButtonClicked);
-      };
+      }).then((response)=>{  
+        console.log(response)
+        UpdateQuadros()  
+           
+      });
+  
+      }
+      
+      const insertQuadroLocalStorage = (index)=>{
+        console.log("teste")
+        
+        localStorage.removeItem('quadro')
+        localStorage.setItem('quadro', rows[index].quadro );
+        props.doIt()
+      }
+   
       const handleToggleInput = () => {
         setShowInput(!showInput); // Alterna entre mostrar e ocultar o input
       };
@@ -39,13 +64,13 @@ const Sidebar = () => {
         <li  className='itemHeader'>Quadros</li>
         {rows.map((row, index) => (
 
-          <li  key={index}>{row.quadro}  </li>
+          <li  key={index} onClick={() =>insertQuadroLocalStorage(index)}>{row.quadro}  </li>
         ))}
       </ul>
       {showInput ? (
         <div>
-          <input type="text"  className='testes' placeholder='Nomeie seu quadro'/>
-          <button>C</button>
+          <input type="text"  className='testes' placeholder='Nomeie seu quadro' value={nomeQuadro} onChange={(e)=> SetnomeQuadro(e.target.value)} />
+          <button onClick={createTable}>C</button>
           <button>D</button>
           </div>
       ) : (

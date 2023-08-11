@@ -79,7 +79,7 @@ const HeaderComponent = () =>  {
     
              
         </ul>
-        <Sidebar />
+       
         </nav>
         )}
     </div >      
