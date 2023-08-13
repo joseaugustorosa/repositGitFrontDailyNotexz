@@ -64,8 +64,11 @@ const Sidebar = props => {
         <li  className='itemHeader'>Quadros</li>
         {rows.map((row, index) => (
 
-          <li  key={index} onClick={() =>insertQuadroLocalStorage(index)}>{row.quadro}  </li>
+          <li  className='quadrosItens' key={index} onClick={() =>insertQuadroLocalStorage(index)}>{row.quadro}  </li>
         ))}
+
+
+        
       </ul>
       {showInput ? (
         <div>

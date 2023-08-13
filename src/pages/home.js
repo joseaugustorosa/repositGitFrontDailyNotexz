@@ -1,7 +1,7 @@
 import React, {useState, useEffect ,useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../home.css'
-
+import '../style/home2.css'
 import Sidebar  from "../components/sidebar";
 import Axios from 'axios'
 import { toast } from 'react-toastify';
@@ -15,6 +15,7 @@ function Home() {
     const urlBackend = 'http://localhost:3001'//'https://backenddailynotes.onrender.com'
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
+    const [quadro, setquadro] = useState([]);
     const [rows2, setRows2] = useState([]);
     const [rows1, setRows1] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
@@ -28,6 +29,8 @@ function Home() {
         setShowPopup(false);
     };
       useEffect(() => {
+        var quadro = localStorage.getItem('quadro');
+        setquadro(quadro)
         const token = localStorage.getItem('token');
         console.log(token)
         if (token) {
@@ -43,7 +46,7 @@ function Home() {
 
     const reload = () =>{
         var quadro = localStorage.getItem('quadro');
-        
+        setquadro(quadro)
         rederizarLista()
         rederizarListaFinished()
         rederizarListaDesenvolvimento()
@@ -258,6 +261,8 @@ function Home() {
         rederizarListaDesenvolvimento()
         });
     }
+     
+
     function Delete2(index){
        
         var usuario = localStorage.getItem('user');
@@ -287,7 +292,8 @@ function Home() {
         const mesFormatado = mes.toString().padStart(2, '0'); // Garante que o mês sempre terá dois dígitos
       
         return `${diaFormatado}/${mesFormatado}/${ano}`;
-      }
+    }
+
     
     
     
@@ -295,6 +301,13 @@ function Home() {
     <div className="backHome">
         <HeaderComponent/>
         <Sidebar doIt = {reload}/>
+        <div className="cabeçalhoNomeQuadro">
+            <h2 className="quadroNome">Quadro : {quadro}</h2>
+
+            <button className="btnExcluir" > <FontAwesomeIcon icon={faTrash } /></button>
+
+
+        </div>
         <div className="div_btn_fp">
         <button onClick={handleButtonClick} className="btnADDHome">Adicionar Tarefa</button>
         </div>
