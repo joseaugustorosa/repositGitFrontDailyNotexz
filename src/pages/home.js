@@ -1,6 +1,8 @@
 import React, {useState, useEffect ,useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../home.css'
+import '../style/home2.css'
+import Sidebar  from "../components/sidebar";
 import Axios from 'axios'
 import { toast } from 'react-toastify';
 import  HeaderComponent  from '../components/header.js'
@@ -9,48 +11,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash  } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function Home() {
-    const [isDragging, setIsDragging] = useState(false);
-    const cardRef = useRef(null);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [offset, setOffset] = useState({ x: 0, y: 0 });
-  
-    const handleMouseDown = (e) => {
-      setIsDragging(true);
-      const cardRect = cardRef.current.getBoundingClientRect();
-      setOffset({
-        x: e.clientX - cardRect.left,
-        y: e.clientY - cardRect.top,
-      });
-    };
-  
-    const handleMouseMove = (e) => {
-      if (isDragging) {
-        setPosition({
-          x: e.clientX - offset.x,
-          y: e.clientY - offset.y,
-        });
-      }
-    };
-  
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-  
-    const estiloDaTag = {
-       
-      };
-    
-
-
     const navigate = useNavigate();
-    const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotes.onrender.com'
+    const urlBackend = 'http://localhost:3001'//'https://backenddailynotes.onrender.com'
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
+    const [quadro, setquadro] = useState([]);
     const [rows2, setRows2] = useState([]);
     const [rows1, setRows1] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [titulo, Settitulo] = useState('');
     const [descricao, setdescricao] = useState('');
+    
     const handleButtonClick = () => {
         setShowPopup(true);
     };
@@ -58,6 +29,8 @@ function Home() {
         setShowPopup(false);
     };
       useEffect(() => {
+        var quadro = localStorage.getItem('quadro');
+        setquadro(quadro)
         const token = localStorage.getItem('token');
         console.log(token)
         if (token) {
@@ -70,6 +43,15 @@ function Home() {
          console.log(rows.length)
          document.title = 'HOME - DAILY NOTEXZ';
      }, []);
+
+    const reload = () =>{
+        var quadro = localStorage.getItem('quadro');
+        setquadro(quadro)
+        rederizarLista()
+        rederizarListaFinished()
+        rederizarListaDesenvolvimento()
+        
+    } 
     function toDev(index){
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
@@ -163,11 +145,13 @@ function Home() {
         });
     }
     function rederizarLista(){
+        var quadro = localStorage.getItem('quadro')
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
         Axios.post(urlBackend + "/popularTabelaBacklog",{
-            nomeuser: usuario
+            nomeuser: usuario,
+            quadro: quadro
         }).then((response)=>{  
            
              const rowsData = response.data.rows;
@@ -176,11 +160,13 @@ function Home() {
         });
     }
     function rederizarListaFinished(){
+        var quadro = localStorage.getItem('quadro')
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
         Axios.post(urlBackend + "/popularTabelaFinished",{
-            nomeuser: usuario
+            nomeuser: usuario,
+            quadro: quadro
         }).then((response)=>{  
            
              const rowsData = response.data.rows;
@@ -188,11 +174,13 @@ function Home() {
         });
     }
     function rederizarListaDesenvolvimento(){
+        var quadro = localStorage.getItem('quadro')
         var usuario = localStorage.getItem('user');
         Setnomeuser(usuario)
 
         Axios.post(urlBackend + "/popularTabelaDesenvo",{
-            nomeuser: usuario
+            nomeuser: usuario,
+            quadro:quadro
         }).then((response)=>{  
            
              const rowsData = response.data.rows;
@@ -211,14 +199,15 @@ function Home() {
     }
 
     function insertTarefa(){
-
+        var quadro = localStorage.getItem('quadro')
         Axios.post(urlBackend + "/inserirNaTabelaBacklog",{
             titul: titulo,
             descricao : descricao,
             data:new Date(),
             hora: hora(),
             user: nomeuser,
-            id: gerarId()
+            id: gerarId(),
+            quadro:quadro
 
         }).then((response)=>{  
              console.log()
@@ -272,6 +261,8 @@ function Home() {
         rederizarListaDesenvolvimento()
         });
     }
+     
+
     function Delete2(index){
        
         var usuario = localStorage.getItem('user');
@@ -301,17 +292,26 @@ function Home() {
         const mesFormatado = mes.toString().padStart(2, '0'); // Garante que o mês sempre terá dois dígitos
       
         return `${diaFormatado}/${mesFormatado}/${ano}`;
-      }
+    }
+
     
     
     
   return (
     <div className="backHome">
-       <HeaderComponent/>
+        <HeaderComponent/>
+        <Sidebar doIt = {reload}/>
+        <div className="cabeçalhoNomeQuadro">
+            <h2 className="quadroNome">Quadro : {quadro}</h2>
+
+            <button className="btnExcluir" > <FontAwesomeIcon icon={faTrash } /></button>
+
+
+        </div>
         <div className="div_btn_fp">
         <button onClick={handleButtonClick} className="btnADDHome">Adicionar Tarefa</button>
         </div>
-      
+      <div className="Organizacao">
         <div className="div">
             <div className="containerMain">
                 <h1>Backlog</h1>
@@ -420,9 +420,9 @@ function Home() {
 
                 {rows2.map((row, index) => (
                 <div className="containerItem" >
-                    <h3 className="containerTitle" key={index} style={estiloDaTag} >{row.titulo}</h3>
+                    <h3 className="containerTitle" key={index}>{row.titulo}</h3>
                     <button className="delete" onClick={() => Delete2(index)}> <FontAwesomeIcon icon={faTrash } /></button>
-                    <p className="containerDescript" key={index} style={estiloDaTag}>{row.descricao}</p>
+                    <p className="containerDescript" key={index}>{row.descricao}</p>
                    
                     <ul>
                     <li className="containerDate" key={index}>{formatarData(row.data)} </li>
@@ -448,6 +448,7 @@ function Home() {
         </div>
                 
             </div>
+            </div>
         </div>
       
     
@@ -455,3 +456,4 @@ function Home() {
 }
 
 export default Home;
+

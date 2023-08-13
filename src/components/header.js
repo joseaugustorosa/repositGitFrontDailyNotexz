@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { User } from 'feather-icons-react';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import Sidebar from './sidebar';
 const HeaderComponent = () =>  {
     const navigate = useNavigate();
     const [perfil, Setperfil] = useState('PERFIL');
@@ -32,7 +32,6 @@ const HeaderComponent = () =>  {
        
         localStorage.removeItem('token');
         navigate('/')
-
     }
 
 
@@ -42,14 +41,10 @@ const HeaderComponent = () =>  {
       {isMobile ? (
         <div>
         <nav>
-
-
             <ul >
             <li className="nomeNavMobile">DAILY NOTEXZ</li>
-            <li className="buttonOptionsHome"><button className="btnMenuHead" onClick={toggleMenu}>   <FontAwesomeIcon icon={faBars} /></button></li>
-                   
+            <li className="buttonOptionsHome"><button className="btnMenuHead" onClick={toggleMenu}>   <FontAwesomeIcon icon={faBars} /></button></li>              
             </ul>
-            
         </nav>
         <div>
         <CSSTransition
@@ -74,14 +69,17 @@ const HeaderComponent = () =>  {
         <nav>
         <ul>
             <li className="nameNav">DAILY NOTEXZ</li>
-            <li className="todolistNavHome" onClick={gotoHome}>To-do List</li>
-            <li className="healthNavHome"  onClick={gotoHealth}>Health</li>
+            
             <li className="logoutBTN"  onClick={logout}><FontAwesomeIcon icon={faSignOutAlt } className="m" /> </li>        
             <li className="perfilIcon" ><User></User></li>
             <li className="perfilNavHome"  >{perfil} </li>  
-                   
+            
+        
+       
+    
              
         </ul>
+       
         </nav>
         )}
     </div >      

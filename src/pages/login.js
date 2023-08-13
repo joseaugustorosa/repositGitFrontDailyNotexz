@@ -4,10 +4,11 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios'
 function Login() {
-  const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotes.onrender.com'
+  const urlBackend = 'http://localhost:3001'//'https://backenddailynotes.onrender.com'
   const navigate = useNavigate();
   const [email, SetEmail] = useState('');
   const [password, Setpassword] = useState('');
+ 
   useEffect(() => {
     document.title = 'LOGIN - DAILY NOTEXZ';
   }, []);
@@ -27,7 +28,7 @@ function Login() {
       }else if(resultado === 'LOGIN AUTORIZADO'){
         const informacao = response.data.nome;
         const user = response.data.user;
-        const login = 'Tá Logado'
+        
         const token = "kajsdkhadgyfgdatwutygwoad"
         localStorage.setItem('informacao', informacao);
         localStorage.setItem('user', user);

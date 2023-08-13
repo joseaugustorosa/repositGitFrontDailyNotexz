@@ -1,0 +1,26 @@
+.quadroNome{
+    color: white;
+    opacity: .2;
+    display: inline;
+    margin-left: 50px;
+}
+.btnExcluir{
+   display: inline;
+   margin-left: 30px;
+   padding: 10px;
+   border-radius: 10px;
+   background-color: transparent;
+    color: rgba(240, 8, 8, 0.514);
+    border:none;
+    
+    
+    
+}
+.btnExcluir:hover{
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.212);
+}
+.cabeçalhoNomeQuadro{
+  
+  padding: 10px;
+}

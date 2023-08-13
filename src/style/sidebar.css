@@ -1,0 +1,75 @@
+.sidebar {
+  width: 150px;
+  height: 100%;
+  background-color: #16133877;
+  padding: 20px;
+  float: left;
+  
+ 
+ 
+  border-right: 1px solid rgba(255, 255, 255, 0.171);
+  
+}
+.itemHeader{
+   
+    width: 90%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.281);
+    color: white;
+    padding: 10px;
+
+
+}
+
+
+.item { 
+    height: 10px;
+    width: 100%;
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+
+}
+.itemCriar{
+    position: fixed;
+    bottom: 10px;
+    height: 20px;
+    width: 100%;
+}
+
+.itemCriar:hover{
+    color: gray;
+    cursor:pointer ;
+
+}
+.DivCriarQuadro{
+    position: fixed;
+    bottom: 10px;
+    height: 20px;
+    width: 100%;
+    padding: 20px;
+}
+.btnCriarQuadro{
+    padding: 10px 10px;
+    border-radius: 8px;
+    border: none;
+    
+}
+.btnCriarQuadro:hover{
+    cursor: pointer;
+    background-color: gray;
+}
+.teste li{
+    width: 80%;
+    list-style: none;
+  }
+.teste .quadrosItens:hover{
+    background-color:#2f3958 ;
+    border-radius: 10px;
+    
+}
+.teste li{
+    display: inline-block  ;
+    color: white;
+    padding: 5px;
+    margin: 3px 0px;
+}
