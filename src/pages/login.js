@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios'
 function Login() {
-  const urlBackend = 'https://backenddailynotes.onrender.com'//'https://backenddailynotes.onrender.com'
+  const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotes.onrender.com'
   const navigate = useNavigate();
   const [email, SetEmail] = useState('');
   const [password, Setpassword] = useState('');
@@ -16,7 +16,7 @@ function Login() {
     console.log(password)
     var resultado
     Axios.post(urlBackend + "/login",{ 
-      email: email,
+      email: email,  
       pass: password
         
     }).then((response)=>{  
