@@ -4,10 +4,13 @@ import '../style/sidebar.css'
 import { toast } from 'react-toastify';
 import Axios from 'axios'
 import Home from '../pages/home'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 const Sidebar = props => {
     
     const [showInput, setShowInput] = useState(false); 
-    const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotexz.onrender.com'
+    const urlBackend = 'http://localhost:3001'//'https://backenddailynotexz.onrender.com'
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
     const [nomeQuadro, SetnomeQuadro] = useState('');
@@ -83,6 +86,9 @@ const Sidebar = props => {
 
       <div className="DivCriarQuadro">
         <button className="btnCriarQuadro" onClick={handleToggleInput}>Criar Quadro</button>
+      </div>
+      <div className="DivExpandirDiminuir">
+        <button className="" ><faPlus className="icon_plus"/></button>
       </div>
     </div>
   );

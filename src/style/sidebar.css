@@ -19,7 +19,9 @@
 
 
 }
-
+.icon_plus{
+    color: black;
+}
 
 .item { 
     height: 10px;
@@ -41,14 +43,14 @@
     cursor:pointer ;
 
 }
-.DivCriarQuadro{
+ .DivExpandirDiminuir{
     position: fixed;
     bottom: 10px;
     height: 20px;
     width: 100%;
     padding: 20px;
 }
-.btnCriarQuadro{
+.btnCriarQuadro{ 
     padding: 10px 10px;
     border-radius: 8px;
     border: none;

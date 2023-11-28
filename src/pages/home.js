@@ -12,7 +12,7 @@ import { faTrash  } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 function Home() {
     const navigate = useNavigate();
-    const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotexz.onrender.com'
+    const urlBackend = 'http://localhost:3001'//'https://backenddailynotexz.onrender.com'
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
     const [quadro, setquadro] = useState([]);

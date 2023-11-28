@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios'
 function Login() {
-  const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotes.onrender.com'
+  const urlBackend = 'http://localhost:3001'//'https://backenddailynotexz.onrender.com'
   const navigate = useNavigate();
   const [email, SetEmail] = useState('');
   const [password, Setpassword] = useState('');
