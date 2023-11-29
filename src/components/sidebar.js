@@ -7,7 +7,7 @@ import Home from '../pages/home'
 const Sidebar = props => {
     
     const [showInput, setShowInput] = useState(false); 
-    const urlBackend = 'https://backenddailynotexz.onrender.com'//'https://backenddailynotexz.onrender.com'
+    const urlBackend = 'http://18.228.119.148:3001'//'https://backenddailynotexz.onrender.com'
     const [nomeuser, Setnomeuser] = useState('PERFIL');
     const [rows, setRows] = useState([]);
     const [nomeQuadro, SetnomeQuadro] = useState('');
