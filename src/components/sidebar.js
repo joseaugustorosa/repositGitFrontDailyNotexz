@@ -74,7 +74,7 @@ const Sidebar = props => {
         <div>
           <input type="text"  className='testes' placeholder='Nomeie seu quadro' value={nomeQuadro} onChange={(e)=> SetnomeQuadro(e.target.value)} />
           <button onClick={createTable}>C</button>
-          <button>D</button>
+          <button>X</button>
           </div>
       ) : (
        <div></div>
