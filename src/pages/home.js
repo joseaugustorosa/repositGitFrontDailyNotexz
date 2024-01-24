@@ -257,14 +257,14 @@ function Home() {
              Settitulo('')
              setdescricao('')
              
-        
+             rederizarLista()
         rederizarListaDesenvolvimento()
         });
     }
      
 
     function Delete2(index){
-       
+       console.log('delete 2')
         var usuario = localStorage.getItem('user');
         console.log(usuario)
 
@@ -278,7 +278,7 @@ function Home() {
              setRows(rowsData);
              Settitulo('')
              setdescricao('')
-             
+             rederizarLista()
              rederizarListaFinished()
         });
     }
