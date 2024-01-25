@@ -1,0 +1,15 @@
+.ag-theme-quartz-dark{
+    --ag-background-color: #e9eeec;
+    --ag-data-color:black;
+}
+.Options_div{
+    height: 100px;
+
+    width: 100%;
+ 
+    text-align: center;
+    padding-top: 50px;
+ 
+ 
+}
+

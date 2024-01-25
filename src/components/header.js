@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from './sidebar';
+
+
 const HeaderComponent = () =>  {
     const navigate = useNavigate();
     const [perfil, Setperfil] = useState('PERFIL');
@@ -16,11 +18,11 @@ const HeaderComponent = () =>  {
          Setperfil(info)
      }, []);
      const isMobile = useMediaQuery({ maxWidth: 768 });
-     function gotoHealth(){
-        navigate('/health')
-     }
      function gotoHome(){
         navigate('/home')
+     }
+     function gotoDev(){
+        navigate('/Dev')
        }
        const [menuAberto, setMenuAberto] = useState(false);
 
@@ -54,8 +56,8 @@ const HeaderComponent = () =>  {
         unmountOnExit> 
 
             <ul className="lista">
-                <li className="itens" onClick={gotoHome}>To-do List</li>
-                <li  className="itens" onClick={gotoHealth}>Health</li>
+                <li className="itens" onClick={gotoDev}>To-do List</li>
+                <li  className="itens" onClick={gotoHome}>Tarefas</li>
                 
                 <li className="itens" >{perfil} - perfil <User></User></li>
                 <li className="itens" onClick={logout}><FontAwesomeIcon icon={faSignOutAlt } className="m" /></li>
@@ -69,7 +71,8 @@ const HeaderComponent = () =>  {
         <nav>
         <ul>
             <li className="nameNav">DAILY NOTEXZ</li>
-            
+            <li className="itens" onClick={gotoDev}>Desenvolvimentos</li>
+            <li className="itens" onClick={gotoHome}>Tarefas</li>
             <li className="logoutBTN"  onClick={logout}><FontAwesomeIcon icon={faSignOutAlt } className="m" /> </li>        
             <li className="perfilIcon" ><User></User></li>
             <li className="perfilNavHome"  >{perfil} </li>  
