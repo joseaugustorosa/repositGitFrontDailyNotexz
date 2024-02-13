@@ -6,12 +6,12 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { AgGridReact } from 'ag-grid-react';
 import { createRoot } from 'react-dom/client';
+import FloatingFormModal from '../components/FormDev';
 import Axios from 'axios'
 const Dev = () => {
     var  resp  = null;
     const urlBackend = 'http://localhost:3001'
     const [showPopup, setShowPopup] = useState(false);
-    
     
     const handleButtonClick = () => {
         setShowPopup(true);
@@ -60,30 +60,32 @@ const Dev = () => {
        <div className='testez'>
         <button   onClick={handleButtonClick} className="btnADDHome">Adicionar Dev</button>
         </div>
-        </div>
-        <div className="ag-theme-quartz-dark" style={{ height: 500 , width: '98%' , margin: 'auto'}}>
-      <AgGridReact rowData={rowData} columnDefs={colDefs} />
+       
         </div>
         {showPopup && (
-        <div className="popup">
-          <div className="popup-content">
+        <div className="popupdev">
+          <div className="popup-contentdev">
           <button onClick={handlePopupClose} className="close_button">x</button>
                 
-            <h2 className="_popup">Adicione uma tarefa</h2>
-            <div className="inputsLogin">
-                    <input type="text" className="inputLogin" placeholder="Titulo" />
+            <h2 className="_popupdev">Adicione um Desenvolvimento</h2>
+            <div className="">
+                    <input type="text" className="" placeholder="Titulo" />
                 </div>
-                <div className="inputsLogin">
-                    <textarea type="text" className="inputareaLogin" placeholder="Descricao" />
+                <div className="">
+                    <textarea type="text" className="" placeholder="Descricao"/>
                 
                 </div>
-                <div className="divbtnaddtask">
-                    <button className="btnaddtask" >Adicionar</button>
+                <div className="">
+                    <button className="" >Adicionar</button>
                 </div>
 
              </div>
         </div>
          )}
+        <div className="ag-theme-quartz-dark" style={{ height: 500 , width: '98%' , margin: 'auto'}}>
+      <AgGridReact rowData={rowData} columnDefs={colDefs} />
+        </div>
+       
     </div>
   );
 };

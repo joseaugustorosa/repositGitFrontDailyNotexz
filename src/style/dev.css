@@ -12,4 +12,30 @@
  
  
 }
-
+.popupdev {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.644);
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    z-index: 1;
+  }
+  
+.popup-contentdev {
+    background-color: #1d2336;
+    width: 60%;
+    height: 70%;
+    border-radius: 4px;
+    clear: both;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+   
+}
+._popupdev{
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
