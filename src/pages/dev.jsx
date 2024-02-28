@@ -5,11 +5,15 @@ import Header from '../components/header'
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { AgGridReact } from 'ag-grid-react';
+import { toast } from 'react-toastify';
+import { FaPenAlt } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import { createRoot } from 'react-dom/client';
 import FloatingFormModal from '../components/FormDev';
 import Axios from 'axios'
 const Dev = () => {
     var  resp  = null;
+    const [isClicked, setIsClicked] = useState(false);
     const urlBackend = 'http://localhost:3001'
     const [showPopup, setShowPopup] = useState(false);
     const [NomeDev, setNomeDev] = useState('');
@@ -21,17 +25,19 @@ const Dev = () => {
     const [OtimizacaoDev, setOtimizacaoDev] = useState('');
     const [DatainicioDev, setDataInicioDev] = useState('');
     const [DatafimDev, setDatafimDev] = useState('');
+    const [Editar, setEditar] = useState(false);
+    const [Deletar, setDeletar] = useState(false);
+    const [id, setId] =useState('');
+    
+    
+    
     const salvarDev = () =>{
-      let usuario = localStorage.getItem('user');
-      console.log(NomeDev)
-      console.log(DatafimDev)
 
-      console.log(SetorDev)
-      console.log(ResponsavelDev)
-
-      Axios.post(urlBackend + "/insertdevs",{
-         
-          user: usuario,
+      if (Editar){
+       
+        Axios.post(urlBackend + "/editDev",{
+           
+          id: id,
        
      descricao : DescricaoDev,
      tempo: TempoDev,
@@ -46,13 +52,72 @@ const Dev = () => {
           resp = response.data.rows;
           setRowData(resp)
           console.log(resp)
+          buscar()
+          toast.done("Desenvolvimento alterado com sucesso!")
       });
+       
+      }else{
+        let usuario = localStorage.getItem('user');
+        console.log(NomeDev)
+        console.log(DatafimDev)
+  
+        console.log(SetorDev)
+        console.log(ResponsavelDev)
+  
+        Axios.post(urlBackend + "/insertdevs",{
+           
+            user: usuario,
+         
+       descricao : DescricaoDev,
+       tempo: TempoDev,
+       data_inicio :new Date( DatainicioDev),
+       data_fim : new Date(DatafimDev ) ,
+       extra_feedback : ExtraDev,
+       responsavel :ResponsavelDev ,
+       setor : SetorDev,
+       nome : NomeDev,
+       otimizacao :OtimizacaoDev
+        }).then((response)=>{  
+            resp = response.data.rows;
+            setRowData(resp)
+            buscar()
+            console.log(resp)
+        });
+  
+      }
+     
+
+    }
+    const buscar = () =>{
+      let usuario = localStorage.getItem('user');
+      console.log(usuario)
+
+      Axios.post(urlBackend + "/infodevs",{
+         
+          user: usuario
+      }).then((response)=>{  
+          resp = response.data.rows;
+          setRowData(resp)
+          console.log(resp)
+      });
+
     }
     const handleButtonClick = () => {
         setShowPopup(true);
     };
       const handlePopupClose = () => {
         setShowPopup(false);
+        
+        setNomeDev('')
+        setSetorDev('')
+        setResponsavelDev('')
+        setTempoDev('')
+        setDescricaoDev('')
+        setExtraDev('')
+        setOtimizacaoDev('')
+        setDataInicioDev('')
+        setDatafimDev('')
+
     };
     useEffect(() => {
         let usuario = localStorage.getItem('user');
@@ -86,11 +151,80 @@ const Dev = () => {
         { field: 'otimizacao' , headerName: 'Otimização' },
         
       ]);
+      const DeletarDev = (objeto) => {
+        const resposta = window.confirm("Deseja continuar?");
+        if (resposta === true) {
+        Axios.post(urlBackend + "/deleteDev",{
+           
+          id: objeto.id
+       
+     
+      }).then((response)=>{  
+          resp = response.data.rows;
+          setRowData(resp)
+          buscar()
+          console.log(resp)
+      });
+    }
+    }
+      
       const onCellClicked = (params) => {
-        const selectedRow = params.data;
-        console.log('Row Data:', selectedRow);
-        // Aqui você pode fazer o que quiser com os dados da linha selecionada
+         if (Editar || Deletar){ 
+        const dados = params.data;
+        if (Editar){
+          setId(dados.id)
+          setNomeDev(dados.nome)
+          setSetorDev(dados.setor)
+          setResponsavelDev(dados.responsavel)
+          setTempoDev(dados.tempo)
+          setDescricaoDev(dados.descricao)
+          setExtraDev(dados.extra_feedback)
+          setOtimizacaoDev(dados.otimizacao)
+          setDataInicioDev(dados.data_inicio)
+          setDatafimDev(dados.data_fim)
+
+          setShowPopup(true)
+
+        } else{
+          DeletarDev(dados)
+        } 
+        
+      }
+       
       };
+      const btnEditarHandle = () =>{
+
+        if (Deletar){
+          toast.error("Para ativar função editar desative a função deletar.")
+        }else{
+          if  (Editar){
+              setEditar(false)
+              toast.info("Função de editar desativada.")
+          }
+          else{
+            setEditar(true);
+            toast.info("Função de editar ativada!")
+            }
+          }
+
+      }
+      const btnDeletarHandle = () =>{
+
+        if (Editar){
+          toast.error("Para ativar função deletar desative a função editar.")
+        }else{
+          if  (Deletar){
+              setDeletar(false)
+              toast.info("Função de deletar desativada.")
+          }
+          else{
+            setDeletar(true);
+            toast.info("Função de deletar ativada!")
+            }
+          }
+
+
+      }
     
   return (
     <div className="">
@@ -98,7 +232,9 @@ const Dev = () => {
         <Header/>
         <div className='Options_div'>
        <div className='testez'>
+       <button    onClick={btnDeletarHandle} style={{ backgroundColor: Deletar ?  'red':'#2f3857' , color: 'white' }} className="btnADDHome"><FaTrash /> </button>
         <button   onClick={handleButtonClick} className="btnADDHome">Adicionar Dev</button>
+        <button   onClick={btnEditarHandle} style={{ backgroundColor: Editar ?  'red' :'#2f3857' , color: 'white' }}  className="btnADDHome"><FaPenAlt /></button>
         </div>
        
         </div>
