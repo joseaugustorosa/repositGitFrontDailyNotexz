@@ -14,7 +14,8 @@ import Axios from 'axios'
 const Dev = () => {
     var  resp  = null;
     const [isClicked, setIsClicked] = useState(false);
-    const urlBackend = 'http://localhost:3001'
+    const urlBackend = 'http://18.228.119.148:3001'
+    //const urlBackend = 'http://localhost:3001'
     const [showPopup, setShowPopup] = useState(false);
     const [NomeDev, setNomeDev] = useState('');
     const [SetorDev, setSetorDev] = useState('');
